@@ -1,0 +1,61 @@
+1->npm init -y
+2 -> cd backend
+npm install express mongoose bcryptjs jsonwebtoken cors dotenv nodemailer
+npm install -D nodemon
+
+create this folder inside backend 
+work flow
+User Request → server.js → routes → middleware → controllers → models → database → Response
+
+1->SERVER.JS - MAIN GATE
+ Kaam: App start karta hai, sabse pehle chalata hai
+ Example: Jaise ghar ka main gate jahan se sab enter karte hain
+ Code: app.listen(5000) - 5000 port pe app khulta hai
+
+2->MODELS FOLDER - FURNITURE DESIGN
+ Kaam: Database ka design batata hai
+ Example: Jaise sofa, bed, table ka measurement aur design
+ File: User.js mein likha hai user ke liye kya-kya data chahiye
+
+3->CONTROLLERS FOLDER - DIMAAG
+   Kaam: Logic aur calculations karta hai
+   Example: Jaise ghar ka owner jo sochta hai kaise kaam hoga
+   File: authController.js - user register/login ka logic
+
+4->ROUTES FOLDER - ROAD MAP
+  Kaam: URL paths batata hai ki request kahan jayegi
+  Example: Jaise ghar ka address: "Mohan ke ghar, Room No. 3"
+  File: authRoutes.js mein routes define hote hain
+
+5->MIDDLEWARE FOLDER - SECURITY GUARD
+  Kaam: Request check karta hai allowed hai ya nahi
+  Example: Jaise security guard jo ID card check karta hai
+  File: auth.js mein token check hota hai
+
+6->SERVICES FOLDER - COURIER SERVICE
+  Kaam: Bahar ki services handle karta hai
+  Example: Jaise postman jo email bhejta hai
+  File: emailService.js email bhejta hai
+
+7->UTILS FOLDER - TOOLBOX
+  Kaam: Chhote-chhote helper functions
+  Example: Jaise hammer, screwdriver jo har jagah use hote hain
+  File: generateOTP.js OTP banata hai
+
+8->CONFIG FOLDER - BLUEPRINT
+  Kaam: App ki settings aur configuration
+  Example: Jaise ghar ka map aur electrical wiring plan
+  File: database.js database connection setup karta hai
+
+9->PUBLIC FOLDER - STORAGE ROOM
+  Kaam: Static files store karta hai
+  Example: Jaise ghar ka store room jahan samaan rakhte hain
+  Content: Images, uploaded files, documents
+
+10->.ENV FILE - SAFE LOCKER
+  Kaam: Passwords aur secret keys store karta hai
+  Example: Jaise ghar ki chabi aur important documents
+  Content: Passwords, API keys, database URLs
+
+11->WORKING EXAMPLE:
+   User signup karta hai → Frontend bhejta hai POST /api/auth/register → server.js routes ko deta hai → authRoutes.js authController ko call karta hai → authController User model use karta hai data save karne ke liye → emailService email bhejta hai → Response wapas jata hai frontend ko

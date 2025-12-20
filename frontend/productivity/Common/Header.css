@@ -1,0 +1,90 @@
+/* NAVBAR */
+.navbar {
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* DESKTOP MENU */
+.navbar-item {
+  display: flex;
+  font-size: 18px;
+}
+
+.navbar-item span {
+  margin-right: 29px;
+  cursor: pointer;
+}
+
+/* MOBILE ICON */
+.icon {
+  display: none; /* desktop me hide */
+  font-size: 26px;
+  cursor: pointer;
+  margin-right: 26px;
+}
+
+/* SIDEBAR DEFAULT (HIDDEN) */
+.sidebar {
+  display: none;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  .navbar-item {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    z-index: 1000;
+    padding-top: 70px; /* navbar height */
+  }
+
+  .sidebar span {
+    display: block;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+
+  .sidebar span:hover {
+    background: #f1f5f9;
+  }
+
+  /* OPEN STATE (useState se) */
+  .sidebar.open {
+    right: 0;
+  }
+}
+.close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+}
+

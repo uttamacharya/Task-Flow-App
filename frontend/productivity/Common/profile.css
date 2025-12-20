@@ -1,0 +1,64 @@
+/* SMALL ICON (HEADER) */
+.profile-avatar {
+  width: 35px;
+  height: 35px;
+  background: #3b82f6;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* FULLSCREEN OVERLAY */
+.profile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  /* position: relative; */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* BIG AVATAR INSIDE CARD */
+.profile-big-avatar {
+  width: 80px;
+  height: 80px;
+  background: #3b82f6;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.profile-card p {
+  color: gray;
+}
+
+/* CLOSE BUTTON */
+.close {
+  position: absolute;
+  top: 5px;
+  right: 2px;
+  font-size: 20px;
+  cursor: pointer;
+}
