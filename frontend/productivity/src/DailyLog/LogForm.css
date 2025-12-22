@@ -1,0 +1,112 @@
+/* LogForm.css */
+
+/* Main container */
+.logFormPage {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative; /* close button same page me */
+}
+
+/* Close button on top-right inside the card */
+.logFormPage .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+  transition: color 0.2s;
+}
+.close:hover {
+  color: #000;
+  background-color: red;
+}
+
+/* Heading */
+.logFormPage h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Inputs and text area inside the card */
+.logFormPage input[type="number"],
+.logFormPage textarea {
+  width: 100%;
+  box-sizing: border-box; /* text area stays inside */
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.logFormPage input[type="number"]:focus,
+.logFormPage textarea:focus {
+  border-color: black;
+}
+
+/* Rating radio buttons */
+.logFormPage .rating-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.logFormPage .rating-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Submit button inside card */
+.logFormPage button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logFormPage button:hover {
+  background-color: #0056b3;
+}
+
+/* Optional: remove overlay/modal effect */
+.formOverlayer {
+  display: block; /* no overlay effect */
+  position: static;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Write Work Log button above the form */
+.logFormIcon {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 10px;
+  margin: 3em;
+  border-radius: 5px;
+  background: linear-gradient(45deg, red, blue);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+}
+.logFormIcon:active {
+  scale: .9;
+}

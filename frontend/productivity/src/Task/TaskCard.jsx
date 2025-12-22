@@ -1,21 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./TaskCard.css";
 
-function TaskCard({ task, onClick }) {
+function TaskCard({ task }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.log("Task clicked:", task._id);
+    navigate(`/dashboard/tasks/${task._id}`);
+  };
+
   return (
-    <div className="task-card" onClick={() => onClick(task)}>
-      
-      {/* 🔹 Task Header */}
+    <div className="task-card" onClick={handleClick}>
+      {/* ===== HEADER ===== */}
       <div className="task-card-header">
         <h4 className="task-title">{task.title}</h4>
 
-        {/* Priority badge */}
         <span className={`priority p${task.priority}`}>
           P{task.priority}
         </span>
       </div>
 
-      {/* 🔹 Short description (optional) */}
+      {/* ===== DESCRIPTION ===== */}
       {task.description && (
         <p className="task-desc">
           {task.description.length > 80
@@ -24,14 +30,14 @@ function TaskCard({ task, onClick }) {
         </p>
       )}
 
-      {/* 🔹 Footer info */}
+      {/* ===== FOOTER ===== */}
       <div className="task-card-footer">
-        <span className={`status ${task.status.toLowerCase()}`}>
+        <span className={`status ${task.status?.toLowerCase()}`}>
           {task.status}
         </span>
 
         <span className="date">
-          {new Date(task.createdAt || Date.now()).toLocaleDateString()}
+          {new Date(task.createdAt).toLocaleDateString()}
         </span>
       </div>
     </div>

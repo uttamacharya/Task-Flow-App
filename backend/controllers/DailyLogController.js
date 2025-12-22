@@ -18,10 +18,52 @@ const createLog = async (req, res) => {
       log: newLog
     });
   } catch (err) {
-    console.log("🔥 ERROR STACK:", err);
+    console.log(" ERROR STACK:", err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
+const createLogForTask = async (req, res) => {
+  try {
+    const { taskId } = req.params;      //  URL se
+    const { duration, rating, comments } = req.body;
+    const userId = req.user.id;          //  JWT se
+
+    if (!taskId) {
+      return res.status(400).json({
+        success: false,
+        message: "Task ID is required"
+      });
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const newLog = new DailyLog({
+      userId,
+      taskId,
+      duration,
+      rating,
+      comments,
+      date: today
+    });
+
+    await newLog.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Daily log created",
+      log: newLog
+    });
+
+  } catch (err) {
+    console.error("🔥 Create log error:", err);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    });
+  }
+};
+
 
 const getLogs = async (req, res) => {
   try {
@@ -34,10 +76,24 @@ const getLogs = async (req, res) => {
 
     res.status(200).json({ success: true, logs });
   } catch (err) {
-    console.log("🔥 ERROR STACK:", err);
+    console.log("ERROR STACK:", err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
+
+// Get logs for a specific task
+const getLogsByTask = async (req, res) => {
+  try {
+    const { taskId } = req.params;
+    const logs = await DailyLog.find({ taskId: taskId }).sort({ createdAt: -1 });
+
+    res.status(200).json({ logs });
+  } catch (err) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
 const getLogsByDate = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -52,7 +108,7 @@ const getLogsByDate = async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
-// ✅ Update Log
+//  Update Log
 const updateLog = async (req, res) => {
   try {
     const log = await DailyLog.findById(req.params.id);
@@ -64,7 +120,7 @@ const updateLog = async (req, res) => {
       });
     }
 
-    // 🔒 HISTORY LOCK LOGIC
+    //  HISTORY LOCK LOGIC
     const logDate = new Date(log.date).toDateString();
     const today = new Date().toDateString();
 
@@ -75,7 +131,7 @@ const updateLog = async (req, res) => {
       });
     }
 
-    // ✅ Same day hai to update allow
+    // Same day hai to update allow
     log.comments = req.body.comments ?? log.comments;
     log.duration = req.body.duration ?? log.duration;
     log.rating = req.body.rating ?? log.rating;
@@ -124,11 +180,20 @@ const deleteLog = async (req, res) => {
     });
 
   } catch (err) {
-    console.log("🔥 ERROR STACK:", err);
+    console.log(" ERROR STACK:", err);
     res.status(500).json({
       success: false,
       message: err.message
     });
   }
 };
-module.exports = { createLog, getLogs, getLogsByDate, updateLog, deleteLog };
+module.exports = {
+  createLog,
+  createLogForTask, //this
+  getLogs,
+  getLogsByDate,
+  getLogsByTask,  //  add this
+  updateLog,
+  deleteLog
+};
+

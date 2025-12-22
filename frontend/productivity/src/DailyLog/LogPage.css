@@ -1,0 +1,149 @@
+/* Container for the whole log page */
+.logPageContainer {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Task title */
+.logPageContainer h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* LogForm button */
+.logFormIcon {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.logFormIcon:hover {
+  background-color: #45a049;
+}
+
+/* Form overlay */
+.formOverlayer {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+/* Log form inputs */
+.logForm input,
+.logForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Radio buttons for rating */
+.logForm div {
+  margin-bottom: 12px;
+}
+.logForm label {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+/* Submit button */
+.logForm button {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logForm button:hover {
+  background-color: #45a049;
+}
+
+/* Close icon */
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  color: #888;
+}
+.close:hover {
+  color: #333;
+}
+
+/* Log List */
+.logList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Individual log card */
+.logCard {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+.logCard:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Log card text */
+.logCard p {
+  margin: 6px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Buttons inside log card */
+.logCard button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.logCard button:first-of-type {
+  background-color: #2196f3;
+  color: white;
+}
+.logCard button:first-of-type:hover {
+  background-color: #1976d2;
+}
+.logCard button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+.logCard button:last-of-type:hover {
+  background-color: #d32f2f;
+}
+
+/* Edit mode inputs */
+.logCard input,
+.logCard textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}

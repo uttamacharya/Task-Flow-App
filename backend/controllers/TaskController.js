@@ -29,6 +29,31 @@ const getTasks = async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
+// Get single task by ID
+const getTaskById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.id;
+
+    const task = await Task.findOne({
+      _id: id,
+      userId: userId, // user ownership check
+    });
+
+    if (!task) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Task not found" });
+    }
+
+    res.status(200).json({ success: true, task });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+};
+
 
 // Update Task
 const updateTask = async (req, res) => {
@@ -62,5 +87,11 @@ const deleteTask = async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
+module.exports = {
+  createTask,
+  getTasks,
+  getTaskById,
+  updateTask,
+  deleteTask,
+};
 
-module.exports = { createTask, getTasks, updateTask, deleteTask };

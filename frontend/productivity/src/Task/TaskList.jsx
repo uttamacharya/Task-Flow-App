@@ -3,6 +3,7 @@ import TaskCard from "./TaskCard";
 import "./TaskList.css";
 
 function TaskList({ tasks }) {
+  console.log("Rendering TaskList:", tasks); // ✅ yahan print
 
   // 🟡 Jab koi task hi nahi hai
   if (!tasks || tasks.length === 0) {
