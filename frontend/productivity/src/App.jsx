@@ -11,7 +11,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
 
-      {/* 👇 Dashboard layout */}
+      {/* Dashboard layout */}
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<Navigate to="tasks" />} />
         <Route path="tasks" element={<TaskPage />} />
