@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../../Common/axiosInstance";
 import LogPage from "../DailyLog/LogPage";
+import AIHelper from "../../Common/AIHelper";
 // import "./TaskDetailsPage.css";
 
 function TaskDetails() {
@@ -47,6 +48,8 @@ function TaskDetails() {
       <hr />
       {/* Render daily logs for this task */}
       <LogPage taskId={taskId} />
+      {/* AI Helper */}
+      <AIHelper taskId={taskId} />
     </div>
   );
 }

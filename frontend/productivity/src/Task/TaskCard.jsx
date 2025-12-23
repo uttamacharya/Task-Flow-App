@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./TaskCard.css";
 
-function TaskCard({ task }) {
+function TaskCard({ task, onEdit }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -40,6 +40,15 @@ function TaskCard({ task }) {
           {new Date(task.createdAt).toLocaleDateString()}
         </span>
       </div>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onEdit(task);
+        }}
+      >
+        Edit
+      </button>
+
     </div>
   );
 }

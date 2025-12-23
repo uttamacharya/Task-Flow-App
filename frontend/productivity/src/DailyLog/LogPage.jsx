@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import LogForm from "./LogForm";
 import LogList from "./LogList";
 import axiosInstance from "../../Common/axiosInstance";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./LogPage.css";
 
 function LogPage({ taskId }) {
@@ -36,8 +38,10 @@ function LogPage({ taskId }) {
         logData
       );
       setLogs((prev) => [res.data.log, ...prev]);
+      toast.success("Log added successfully"); 
     } catch (err) {
       console.error("Create log error:", err);
+      toast.error(err.response?.data?.message || "Failed to add log");
     }
   };
 
@@ -53,8 +57,15 @@ function LogPage({ taskId }) {
           log._id === logId ? res.data.log : log
         )
       );
+      toast.success("Log updated successfully");
     } catch (err) {
       console.error("Update log error:", err);
+      if(err.response){
+        toast.error(err.response.data.message);
+      }
+      else{
+        toast.error("Someting went wrong")
+      }
     }
   };
 
@@ -65,8 +76,10 @@ function LogPage({ taskId }) {
       setLogs((prev) =>
         prev.filter((log) => log._id !== logId)
       );
+      toast.success("Log deleted successfully");
     } catch (err) {
       console.error("Delete log error:", err);
+      toast.error("Failed to delete log");
     }
   };
 
@@ -85,6 +98,7 @@ function LogPage({ taskId }) {
           onDelete={deleteLog}
         />
       )}
+      <ToastContainer/>
     </div>
   );
 }

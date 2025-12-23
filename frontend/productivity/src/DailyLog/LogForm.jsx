@@ -60,7 +60,7 @@ function LogForm({onCreate}) {
 
                         <textarea
                             placeholder="What did you do?"
-                            value={commnets}
+                            value={comments}
                             onChange={(e) => setComments(e.target.value)}
                         />
 

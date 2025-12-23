@@ -110,3 +110,10 @@
 .logFormIcon:active {
   scale: .9;
 }
+.ratingGroup{
+  display: flex;
+  /* color: #000; */
+}
+.ratingGroup label{
+  color: black;
+}

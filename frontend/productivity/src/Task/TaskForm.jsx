@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './TaskForm.css'
 
-function TaskForm({ onCreate }) {
+function TaskForm({ onCreate, onUpdate, taskToEdit }) {
+    // taskToEdit->jo task edit karna hai
+    // onUpdate-> Api call 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [priority, setPriority] = useState('3');
@@ -16,15 +18,22 @@ function TaskForm({ onCreate }) {
         e.preventDefault();
         if (!title.trim()) return;
 
-        const newTask = {
-            _id: Date.now().toString(),
-            title,
-            description,
-            priority,
-            status,
-            createdAt: new Date()
-        };
-        onCreate(newTask)
+        // const newTask = {
+        //     _id: Date.now().toString(),
+        //     title,
+        //     description,
+        //     priority,
+        //     status,
+        //     createdAt: new Date()
+        // };  it's for creating task not for editing
+        const taskData= {title, description, priority, status};
+
+        if(taskToEdit){
+            onUpdate(taskToEdit._id,taskData)
+        }else{
+            onCreate(newTask)
+        }
+        // onCreate(newTask)
         // ResetForm
         setTitle("");
         setDescription("");
@@ -32,6 +41,16 @@ function TaskForm({ onCreate }) {
         setStatus('pending');
         setOpen(false); // modal close
     }
+
+    useEffect(()=>{
+        if(taskToEdit){
+            setTitle(taskToEdit.title)
+            setDescription(taskToEdit.description || "")
+            setPriority(taskToEdit.priority)
+            setStatus(taskToEdit.status)
+            setOpen(true);
+        }
+    },[taskToEdit])
     return (
         <>
             <div className="TaskFormIcon" onClick={() => setOpen(true)}>+ Create Task</div>
@@ -39,7 +58,7 @@ function TaskForm({ onCreate }) {
                 <div className="formOverlayer">
                     <form className="taskForm" onSubmit={submitHandler}>
                         <span className="close" onClick={() => setOpen(false)}>✖</span>
-                        <h3>Create Task</h3>
+                        <h3>{taskToEdit ? "Edit Task" : "Create Task"}</h3>
                         <input
                             type="text"
                             placeholder="task title"
@@ -70,7 +89,7 @@ function TaskForm({ onCreate }) {
                             <option value="In-Process">In Process</option>
                             <option value="Completed">Completed</option>
                         </select>
-                        <button type='submit'> Create Task</button>
+                        <button type='submit'> {taskToEdit ? "Update Task" : "Create Task"}</button>
                     </form>
                     <ToastContainer />
                 </div>

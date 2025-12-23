@@ -10,7 +10,7 @@ function LogList({logs = [], onEdit, onDelete}) {
   return (
     <div className="logList">
       {logs.map((log) => (
-        console.log("LOG:", log),
+        // console.log("LOG:", log),
         <LogCard
           key={log._id }
           log={log}

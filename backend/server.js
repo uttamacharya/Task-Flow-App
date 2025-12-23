@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 require('dotenv').config();
+// const aiRoutes = require("./routs/AIRoutes");
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI)
@@ -36,6 +37,8 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ success: false, message: 'Something went wrong!' });
 });
+
+// app.use("/api/ai", aiRoutes);
 
 // Server start
 const PORT = process.env.PORT || 5000;

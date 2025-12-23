@@ -9,6 +9,8 @@ import axiosInstance from '../../Common/axiosInstance';
 
 function TaskPage() {
     const [tasks, setTasks] = useState([]);
+    // const [tasks, setTasks] = useState([]);
+    const [taskToEdit, setTaskToEdit] = useState(null);
 
     useEffect(() => {
         fetchTasks();
@@ -32,12 +34,40 @@ function TaskPage() {
             console.error("Add task error:", err);
         }
     };
+    const handleEditClick = (task) => {
+        setTaskToEdit(task);
+    };
+
+
+    const updateTask = async (taskId, updatedData) => {
+        try {
+            const res = await axiosInstance.put(
+                `/tasks/${taskId}`,
+                updatedData
+            );
+
+            setTasks((prev) =>
+                prev.map((task) =>
+                    task._id === taskId ? res.data.task : task
+                )
+            );
+
+            setTaskToEdit(null); // edit complete
+        } catch (err) {
+            console.error("Update task error:", err);
+        }
+    };
+
 
     return (
         <div className="Task-container">
             <div className="item">
-                <TaskForm onCreate={addTask} />
-                <TaskList tasks={tasks} />
+                <TaskForm onCreate={addTask}
+                    onUpdate={updateTask}
+                    taskToEdit={taskToEdit} />
+                <TaskList
+                    tasks={tasks}
+                    onEdit={handleEditClick} />
             </div>
             <ToastContainer />
         </div>
