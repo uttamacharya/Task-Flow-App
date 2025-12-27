@@ -43,8 +43,8 @@ function Login() {
             name:user.name
           })
         );
-        console.log("user inside localStorage ", user.email)
-        console.log("user inside localStorage ", user.name)
+        // console.log("user inside localStorage ", user.email)
+        // console.log("user inside localStorage ", user.name)
         // console.log("Login response:", data);
         // console.log(data.user.email); //
         // console.log(data.user.userName); //

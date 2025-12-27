@@ -21,7 +21,7 @@ function TaskCard({ task, onEdit }) {
         </span>
       </div>
 
-      {/* ===== DESCRIPTION ===== */}
+      {/* DESCRIPTION  */}
       {task.description && (
         <p className="task-desc">
           {task.description.length > 80
@@ -30,7 +30,7 @@ function TaskCard({ task, onEdit }) {
         </p>
       )}
 
-      {/* ===== FOOTER ===== */}
+      {/* FOOTER */}
       <div className="task-card-footer">
         <span className={`status ${task.status?.toLowerCase()}`}>
           {task.status}

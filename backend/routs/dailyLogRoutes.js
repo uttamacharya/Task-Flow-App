@@ -4,7 +4,7 @@ const {
     createLog,
     createLogForTask,
     getLogs,
-    getLogsByDate,
+    getLogsByDateRange,
     getLogsByTask,
     updateLog,
     deleteLog
@@ -19,10 +19,10 @@ router.post(
     authMiddleware,
     createLogForTask
 );
-
+router.get('/range', authMiddleware, getLogsByDateRange);
 router.post('/', authMiddleware, createLog);
 router.get('/', authMiddleware, getLogs);
-router.get('/:date', authMiddleware, getLogsByDate);
+router.get('/:date', authMiddleware, getLogsByDateRange);
 router.put('/:id', authMiddleware, updateLog);
 router.delete('/:id', authMiddleware, deleteLog);
 

@@ -3,8 +3,9 @@
   padding: 16px;
   border-radius: 14px;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.6);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
 }
 
 .task-card:hover {
@@ -57,3 +58,10 @@
 .status.pending { color: #b45309; }
 .status.in-process { color: #2563eb; }
 .status.completed { color: #15803d; }
+button{
+  margin: 5px;
+  padding: 4px;
+  background-color: #155e75;
+  border-radius: 5px;
+}
+

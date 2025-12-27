@@ -56,7 +56,7 @@ const createLogForTask = async (req, res) => {
     });
 
   } catch (err) {
-    console.error("🔥 Create log error:", err);
+    console.error(" Create log error:", err);
     res.status(500).json({
       success: false,
       message: "Internal Server Error"
@@ -68,7 +68,7 @@ const createLogForTask = async (req, res) => {
 const getLogs = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { taskId } = req.query;  //taskId=
+    const { taskId } = req.query;  //taskId
     const logs = await DailyLog.find({
       userId,
       taskId
@@ -94,18 +94,28 @@ const getLogsByTask = async (req, res) => {
 };
 
 
-const getLogsByDate = async (req, res) => {
+const getLogsByDateRange = async (req, res) => {
+  //  console.log(" RANGE API HIT");
+  //  console.log(req.query);
   try {
-    const userId = req.user.id;
-    const { date } = req.params; // format: YYYY-MM-DD
-    const logs = await DailyLog.find({
+    const userId = req.user.id; //From middleware
+    const {fromDate, toDate}= req.query; //from url
+     console.log(" RANGE API HIT");
+     console.log(req.query);
+    const filter={
       userId,
-      date: { $gte: new Date(date), $lt: new Date(new Date(date).setDate(new Date(date).getDate() + 1)) }
-    }).populate('taskId', 'name');
-
-    res.status(200).json({ success: true, logs });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
+      date:{
+        $gte: new Date(fromDate), //$gte-> gratter then and equal means start from date
+        $lte: new Date(toDate)   //  $lte-> less then or equal means to date
+      }
+    };
+    const logs = await DailyLog.find(filter).  //its reference field 
+                 populate("taskId", "title priority status") //populate->sirf task id ki jagah puri task ki details (tittle priority, status bhi le aayega)
+                 .sort({date: -1}); //log ko date ki hisab se  descending order me sort karte hain
+    res.status(200).json({logs})
+  }catch(err){
+    console.error("Date range log error", err);
+    res.status(500).json({message:"Internal Server Error"})
   }
 };
 //  Update Log
@@ -191,7 +201,7 @@ module.exports = {
   createLog,
   createLogForTask, //this
   getLogs,
-  getLogsByDate,
+  getLogsByDateRange,
   getLogsByTask,  //  add this
   updateLog,
   deleteLog

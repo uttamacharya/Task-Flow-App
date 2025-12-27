@@ -37,7 +37,8 @@ function TaskDetails() {
       <button onClick={() => navigate("/dashboard/tasks")}>
         ← Back to Tasks
       </button>
-      <h2>{task.title}</h2>
+      <div className="aboutTask">
+        <h2>{task.title}</h2>
       {task.description && <p>{task.description}</p>}
       <p>
         Status: <strong>{task.status}</strong>
@@ -45,6 +46,8 @@ function TaskDetails() {
       <p>
         Priority: <strong>P{task.priority}</strong>
       </p>
+      </div>
+      
       <hr />
       {/* Render daily logs for this task */}
       <LogPage taskId={taskId} />

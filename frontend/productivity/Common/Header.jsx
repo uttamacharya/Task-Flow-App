@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Header.css'
 import Profile from './profile'
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
 
@@ -12,9 +13,13 @@ function Header() {
 
             {/* Desktop menu */}
             <div className="navbar-item">
-                <span>Dashboard</span>
-                <span>Task</span>
-                <span>Sections</span>
+                <span>
+                    <Link to="/dashboard">Dashboard</Link>
+                </span>
+                <span><Link to="/dashboard/tasks">Task</Link></span>
+                <span>
+                    <Link to="/dashboard/AllPage">Logs</Link>
+                </span>
 
                 <span>Setting</span>
                 <span>
@@ -29,11 +34,11 @@ function Header() {
             <div className={`sidebar ${open ? "open" : ""}`}>
                 <span className="close" onClick={() => setOpen(false)}>✖</span>
 
-                <span>Dashboard</span>
-                <span>Task</span>
-                <span>Sections</span>
+                <span><Link to="/dashboard">Dashboard</Link></span>
+                <span ><Link to="/dashboard/tasks">Task</Link></span>
+                <span><Link to="/dashboard/logs">Logs</Link></span>
                 <span>Setting</span>
-                <span ><Profile></Profile>Profile</span>
+                <span ><Profile></Profile></span>
             </div>
         </div>
     )

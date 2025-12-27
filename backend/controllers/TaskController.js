@@ -29,7 +29,7 @@ const getTasks = async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
-// Get single task by ID
+// Get single task by ID it will help for dailylog
 const getTaskById = async (req, res) => {
   try {
     const { id } = req.params;

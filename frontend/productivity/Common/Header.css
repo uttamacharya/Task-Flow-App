@@ -11,8 +11,9 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #e5e7eb;
+  opacity: 0.8;
 }
 
 /* DESKTOP MENU */
@@ -28,7 +29,8 @@
 
 /* MOBILE ICON */
 .icon {
-  display: none; /* desktop me hide */
+  display: none;
+  /* desktop me hide */
   font-size: 26px;
   cursor: pointer;
   margin-right: 26px;
@@ -38,7 +40,16 @@
 .sidebar {
   display: none;
 }
-
+.navbar-item a,
+.sidebar a{
+  text-decoration: none;
+  color: inherit;
+}
+.navbar-item a:hover,
+.sidebar a:hover{
+  border-bottom: rgb(128, 128, 230);
+  color: red;
+}
 /* MOBILE VIEW */
 @media (max-width: 768px) {
 
@@ -58,10 +69,12 @@
     width: 260px;
     height: 100%;
     background: #fff;
-    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
     transition: 0.3s;
     z-index: 1000;
-    padding-top: 70px; /* navbar height */
+    padding-top: 70px;
+    /* cursor: pointer; */
+    /* navbar height */
   }
 
   .sidebar span {
@@ -79,12 +92,15 @@
   .sidebar.open {
     right: 0;
   }
-}
-.close {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  font-size: 22px;
-  cursor: pointer;
-}
 
+  .sidebar .close {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 22px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    line-height: 1;
+  }
+}
